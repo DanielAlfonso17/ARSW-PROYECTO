@@ -16,6 +16,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "productos")
 public class Producto implements Serializable{
@@ -28,7 +30,7 @@ public class Producto implements Serializable{
 	@Column(nullable = false)
 	private String nombre;
 	
-	@NotEmpty(message = "No puede estar vacio")
+	
 	@Column(nullable = false)
 	private Double precio;
 	
@@ -36,8 +38,13 @@ public class Producto implements Serializable{
 	@Temporal(TemporalType.DATE)
 	private Date fechaCreacion;
 	
+	@JsonIgnoreProperties(value = {"productos","hibernateLazyInitializer","handler"},allowSetters = true )
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Vendedor vendedor;
+	
+	private String foto;
+	
+	
 	
 	@PrePersist
 	public void prePersist() {
@@ -83,6 +90,28 @@ public class Producto implements Serializable{
 	public void setFechaCreacion(Date fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
+
+	
+
+	public Vendedor getVendedor() {
+		return vendedor;
+	}
+
+
+	public void setVendedor(Vendedor vendedor) {
+		this.vendedor = vendedor;
+	}
+
+
+	public String getFoto() {
+		return foto;
+	}
+
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
 
 
 	private static final long serialVersionUID = 1L;

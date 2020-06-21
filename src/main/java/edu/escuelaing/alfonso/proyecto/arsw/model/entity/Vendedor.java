@@ -21,6 +21,8 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name = "vendedores")
@@ -44,8 +46,10 @@ public class Vendedor implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date fechaCreacion;
 	
+	@JsonIgnoreProperties(value= {"vendedor","hibernateLazyInitializer","handler"},allowSetters = true)
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "vendedor",cascade = CascadeType.ALL)
 	private List<Producto> productos;
+	
 	
 	public Vendedor() {
 		this.productos = new ArrayList<>();
