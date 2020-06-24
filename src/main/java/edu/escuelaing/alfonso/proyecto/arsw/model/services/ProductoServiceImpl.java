@@ -45,32 +45,38 @@ public class ProductoServiceImpl implements ProductoService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Producto findByNombre(String nombre) {
 		return productoDao.findByNombre(nombre);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Producto> findByNombreContainsWord(String palabra) {
 		return (List<Producto>) productoDao.findByNombreContainingIgnoreCase(palabra);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Producto> findByRangoPrecios(Double valor1, Double valor2) {
 		return (List<Producto>) productoDao.findByRangoPrecio(valor1, valor2);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Producto> findByPrecio(Double precio) {
 		return (List<Producto>) productoDao.findByPrecio(precio);
 	}
 
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Producto> findByVendedor(Vendedor vendedor) {
-		return (List<Producto>) productoDao.findProductosById(vendedor);
+		return (List<Producto>) productoDao.findProductosByVendedor(vendedor);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Page<Producto> findAll(Pageable pageable) {
 		return productoDao.findAll(pageable);
 	}

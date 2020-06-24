@@ -20,7 +20,7 @@ public interface ProductoDao extends JpaRepository<Producto, Long> {
 	public List<Producto> findByPrecio(Double precio);
 	
 	@Query("select p from Producto p where p.vendedor = ?1")
-	public List<Producto> findProductosById(Vendedor vendedor);
+	public List<Producto> findProductosByVendedor(Vendedor vendedor);
 	
 
 	

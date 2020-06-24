@@ -44,7 +44,7 @@ public class Producto implements Serializable{
 	
 	private String foto;
 	
-	
+	private String descripcion;
 	
 	@PrePersist
 	public void prePersist() {
@@ -111,6 +111,19 @@ public class Producto implements Serializable{
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
+
+	
+
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
 
 
 

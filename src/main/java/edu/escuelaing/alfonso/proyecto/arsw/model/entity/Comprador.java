@@ -19,6 +19,9 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.validation.constraints.NotNull;
 
 
@@ -53,6 +56,7 @@ public class Comprador implements Serializable {
 	
 	private String foto; 
 	
+	@JsonIgnoreProperties(value= {"cliente","hibernateLazyInitializer","handler"},allowSetters = true)
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "comprador", cascade = CascadeType.ALL)
 	private List<Factura> facturas;
 	
