@@ -38,7 +38,7 @@ import edu.escuelaing.alfonso.proyecto.arsw.model.services.UploadFileService;
 import edu.escuelaing.alfonso.proyecto.arsw.model.services.VendedorService;
 
 
-@CrossOrigin(origins = {"*"})
+@CrossOrigin
 @RestController
 @RequestMapping("/comprador")
 public class CompradorRestController {

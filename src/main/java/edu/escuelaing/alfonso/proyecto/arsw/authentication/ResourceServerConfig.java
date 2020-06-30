@@ -29,23 +29,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 			//forma programatica
 			//permitir a todos acceso a consulta de tabla clientes la paginacion tambien para todos y ver imagenes asterisco significa todo lo que venga despues de esta ruta recursivo publico
 			http.authorizeRequests().antMatchers(HttpMethod.GET,"/**").permitAll();
+			http.authorizeRequests().antMatchers(HttpMethod.POST,"/**").permitAll();
 			
 			//.antMatchers(HttpMethod.GET, "/comprador/productos/**").hasRole("USER")
 			//.antMatchers(HttpMethod.POST, "/vendedor/**").hasRole("ADMIN")
 			//antMatchers(HttpMethod.GET, "/vendedor/**").hasRole("ADMIN")
-			//admin y usuarios pueden consultar el detalle del cliente
-			/**.antMatchers(HttpMethod.GET, "/api/clientes/{id}").hasAnyRole("USER","ADMIN")
-			//Solamente admint puede crear usuarios
-			.antMatchers(HttpMethod.POST, "/api/clientes").hasRole("ADMIN")
-			//de ese path en adelante de clientes requiere permisos de admin PUT delete administradores
-			//todo lo que venga despues de admin, regiones tambien
-			.antMatchers("/api/clientes/**").hasRole("ADMIN")
-			//el admin y los users pueden subir una foto 
-			.antMatchers(HttpMethod.POST, "/api/clientes/upload").hasAnyRole("USER","ADMIN")
-			//las demas request solo para usuarios autenticados, put,post,delete**/
-			//.anyRequest().authenticated() descomentar
-			//configuracion de cors and para volver al objeto principal http security
-			//.and().cors().configurationSource(corsConfigurationSource()); descomentar
 			
 		}
 		//cors es un mecanismo que usa las cabezaras http para permitir que un cliente que esta en otro dominio distinto al backend, tenga permisos para acceder a los recursos del backend por spring security OAUTH2
@@ -56,7 +44,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 			//indicamos el dominio donde reside nuestra aplicacion cliente (angular) podemos configurar varios con * podemos definir todos los dominios
 			//para produccion en asterisco agregamos nombre de dominio o ip para produccion * aceota cualquier origen
 			//config.setAllowedOrigins(Arrays.asList("http://localhost:4200","*")); 
-			config.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+			config.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
 			//configuracion de metodos o verbos que permitiremos en nuetro backend 
 			config.setAllowedMethods(Arrays.asList("GET","POST","PUT","DELETE","OPTIONS"));
 			//configuracion permitir credenciales

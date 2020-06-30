@@ -27,7 +27,7 @@ public class UploadFileServiceImpl implements UploadFileService {
 		log.info(rutaArchivo.toString());
 		Resource recurso = new UrlResource(rutaArchivo.toUri());
 		if(!recurso.exists() && !recurso.isReadable()) {
-			rutaArchivo = Paths.get("src/main/resources/static/images").resolve("nouser.png").toAbsolutePath();
+			rutaArchivo = Paths.get("src/main/resources/static/images").resolve("noproduct.jpg").toAbsolutePath();
 			recurso = new UrlResource(rutaArchivo.toUri());
 			log.error("Error no se pudo cargar la imagen "+ nombreFoto);
 		}

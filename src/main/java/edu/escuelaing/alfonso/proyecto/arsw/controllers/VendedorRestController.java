@@ -1,15 +1,18 @@
 package edu.escuelaing.alfonso.proyecto.arsw.controllers;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import javax.validation.Valid;
 
+import javax.validation.Valid;
+import org.springframework.core.io.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -31,7 +34,7 @@ import edu.escuelaing.alfonso.proyecto.arsw.model.services.ProductoService;
 import edu.escuelaing.alfonso.proyecto.arsw.model.services.UploadFileService;
 import edu.escuelaing.alfonso.proyecto.arsw.model.services.VendedorService;
 
-@CrossOrigin(origins = {"*"})
+@CrossOrigin
 @RestController
 @RequestMapping("/vendedor")
 public class VendedorRestController {
@@ -165,5 +168,41 @@ public class VendedorRestController {
 		response.put("mensaje","El producto ha sido eliminado con exito!" );
 		return new ResponseEntity<Map<String, Object>>(response,HttpStatus.OK);
 		
+	}
+	
+	@GetMapping("/productos/{id}")
+	public ResponseEntity<?> consultarProductoId(@PathVariable Long id){
+		Producto producto = null; 
+		Map<String, Object> response = new HashMap<>();
+		try {
+			producto = productoService.findById(id);
+		}catch (DataAccessException e) {
+			response.put("mensaje", "Error al consultar producto");
+			response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+			return new ResponseEntity<Map<String,Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		if(producto == null) {
+			response.put("mensaje", "El producto: ".concat(id.toString().concat(" no existe en la base de datos!.")));
+			return new ResponseEntity<Map<String,Object>>(response, HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<Producto>(producto,HttpStatus.OK);
+	}
+	
+	@GetMapping("/uploads/img/{nombreFoto:.+}")
+	public ResponseEntity<Resource> verFoto(@PathVariable String nombreFoto){
+
+		Resource recurso = null;
+		
+		try {
+			recurso = uploadService.cargar(nombreFoto);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+		//cabecerashttp headers para forzar la imagen que se pueda descargar
+		HttpHeaders cabecera= new HttpHeaders();
+		cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"" );
+		
+		return new ResponseEntity<Resource>(recurso,cabecera,HttpStatus.OK);
 	}
 }

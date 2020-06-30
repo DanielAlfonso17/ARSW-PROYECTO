@@ -30,8 +30,7 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter{
 		//inyectamos con autowired y qualifier para definir el nombre del metodo del manager en springsecurityconfig
 		@Qualifier("authenticationManager")
 		private AuthenticationManager authenticationManager;
-		//inyectamos info adicional
-		
+	
 		//Metodo que configura los permisos de los endpoints 
 		//Tenemos dos endpoints en authorization server uno para autenticarnos e iniciar sesion y lo manda al usuario esa ruta dbe ser publica
 		//ya que cualquier usuario puede iniciar sesion y recibir un token
@@ -51,10 +50,10 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter{
 		@Override
 		public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 			//nombre del cliente
-			clients.inMemory().withClient("angularapp")
+			clients.inMemory().withClient("reactapp")
 			//contraseña encriptada con passwordweconder
 			.secret(passwordEncoder.encode("12345"))
-			//el permiso que tiene e cliente(Aplicacion) podra leer crear datos modificar eliminar lo que hace angular
+			//el permiso que tiene e cliente(Aplicacion) podra leer crear datos modificar eliminar 
 			.scopes("read","write")
 			//como sera el tipo de autenticacion como lo obtendremos el token tanto para usuarios como para el cliente puede ser otro tipo de auten
 			//1) credenciales 2)codigo autorizacion via redireccionamiento url 3)implicita mas debil parecida a codigo de autorizacion enviamos el cliente id y password en la redireccion url recibimos el token
