@@ -30,6 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import edu.escuelaing.alfonso.proyecto.arsw.model.entity.Producto;
 import edu.escuelaing.alfonso.proyecto.arsw.model.entity.Vendedor;
+import edu.escuelaing.alfonso.proyecto.arsw.model.services.CompradorService;
 import edu.escuelaing.alfonso.proyecto.arsw.model.services.ProductoService;
 import edu.escuelaing.alfonso.proyecto.arsw.model.services.UploadFileService;
 import edu.escuelaing.alfonso.proyecto.arsw.model.services.VendedorService;
@@ -204,5 +205,10 @@ public class VendedorRestController {
 		cabecera.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + recurso.getFilename() + "\"" );
 		
 		return new ResponseEntity<Resource>(recurso,cabecera,HttpStatus.OK);
+	}
+	
+	@GetMapping("/correo/{email}")
+	public Vendedor getVendedorEmail(@PathVariable String email) {
+		return vendedorService.findByEmail(email);
 	}
 }

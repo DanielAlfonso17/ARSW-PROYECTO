@@ -2,6 +2,7 @@ package edu.escuelaing.alfonso.proyecto.arsw.model.entity;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -46,6 +47,19 @@ public class Usuario implements Serializable {
 	@JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(name="usuario_id"), inverseJoinColumns = @JoinColumn(name = "rol_id"),  
 	uniqueConstraints = {@UniqueConstraint(columnNames = {"usuario_id", "rol_id"})})
 	private List<Rol> roles;
+
+	public Usuario() {
+		
+	}
+	
+	public Usuario(String username, String email, String password, String nombre, String apellido) {
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.enabled = true;
+		this.apellido = apellido;
+		this.nombre = nombre;
+	}
 
 	public Long getId() {
 		return id;

@@ -48,11 +48,8 @@ public class UsuarioServiceImpl implements UsuarioService, UserDetailsService{
 				.peek(authority -> logger.info("Role: " + authority.getAuthority()))
 				.collect(Collectors.toList());
 		
-		return new User(usuario.getUsername(), usuario.getPassword(), usuario.getEnabled(), true, true, true, authorities);
-	}
-	
-	public Usuario create(@PathVariable Usuario usuario) {
-		return usuarioDao.save(usuario);
+		//return new User(usuario.getUsername(), usuario.getPassword(), usuario.getEnabled(), true, true, true, authorities);
+		return UserDetailsImpl.build(usuario);
 	}
 	
 

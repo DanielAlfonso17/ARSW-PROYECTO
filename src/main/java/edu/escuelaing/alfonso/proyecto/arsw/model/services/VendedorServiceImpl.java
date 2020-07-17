@@ -30,4 +30,9 @@ public class VendedorServiceImpl implements VendedorService{
 		return vendedorDao.findByNombre(nombre);
 	}
 
+	@Override
+	public Vendedor findByEmail(String email) {
+		return vendedorDao.findByEmail(email);
+	}
+
 }

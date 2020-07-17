@@ -4,8 +4,8 @@
 INSERT INTO usuarios (username,password,enabled,nombre,apellido,email) VALUES ('daniel','$2a$10$JztpjynRLcysiVWOv6pg3ukHiwtVo5B8AB/v2mUEmZZwdr8QdFTra',1,'Daniel','Alfonso','danielalfonso.29@hotmail.com');
 INSERT INTO usuarios (username,password,enabled,nombre,apellido,email) VALUES ('admin','$2a$10$fpcvcBIYRqW7/nlQo20dMOtfVPRv6qbgw7.Er1XEJeK29haTFsPJG',1,'Fonseca','Alfonso','FonsecaAlfo@gmail.com');
 
-INSERT INTO roles (nombre) VALUES ('ROLE_USER');
-INSERT INTO roles (nombre) VALUES ('ROLE_ADMIN');
+INSERT INTO roles (nombre) VALUES ('ROLE_COMPRADOR');
+INSERT INTO roles (nombre) VALUES ('ROLE_VENDEDOR');
 
 INSERT INTO usuarios_roles (usuario_id, rol_id) VALUES (1,1);
 INSERT INTO usuarios_roles (usuario_id, rol_id) VALUES (2,2);

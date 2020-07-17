@@ -55,6 +55,13 @@ public class Vendedor implements Serializable {
 		this.productos = new ArrayList<>();
 	}
 	
+	public Vendedor(String nombre, String email) {
+		this.nombre = nombre;
+		this.email = email;
+		this.productos = new ArrayList<>();
+		
+	}
+	
 	@PrePersist
 	public void prePersist() {
 		fechaCreacion = new Date();

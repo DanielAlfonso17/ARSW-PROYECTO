@@ -7,7 +7,7 @@ import edu.escuelaing.alfonso.proyecto.arsw.model.entity.Usuario;
 public interface UsuarioDao extends CrudRepository<Usuario, Long> {
 	public Usuario findByUsername(String username);
 	
-	
+	public Boolean existsByUsername(String username);
 	
 
 }

@@ -11,6 +11,7 @@ public interface VendedorService {
 	
 	public Vendedor findByNombre(String nombre);
 	
+	public Vendedor findByEmail(String email);
 
 
 }

@@ -49,7 +49,7 @@ public class Comprador implements Serializable {
 	@Column(nullable = false, unique = true)
 	private String email;
 	
-	@NotNull(message = "No puede estar vacio")
+
 	@Column(name = "fecha_nacimiento")
 	@Temporal(TemporalType.DATE)
 	private Date fechaNacimiento;
@@ -62,6 +62,13 @@ public class Comprador implements Serializable {
 	
 	
 	public Comprador() {
+		this.facturas = new ArrayList<>();
+	}
+	
+	public Comprador(String nombre, String apellido, String email) {
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
 		this.facturas = new ArrayList<>();
 	}
 	
