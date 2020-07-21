@@ -16,13 +16,13 @@ public class AccessTestController {
 	}
 	
 	@GetMapping("/comprador")
-	@PreAuthorize("hasRole('ROLE_COMPRADOR')")
+	@PreAuthorize("hasRole('COMPRADOR')")
 	public String compradorAccess() {
 		return "Comprador Content.";
 	}
 	
 	@GetMapping("/vendedor")
-	@PreAuthorize("hasRole('ROLE_VENDEDOR')")
+	@PreAuthorize("hasRole('VENDEDOR')")
 	public String vendedorAccess() {
 		return "Vendedor Content.";
 	}

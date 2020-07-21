@@ -163,4 +163,9 @@ public class CompradorRestController {
 		facturaService.deleteFacturaById(id);
 	}
 	
+	@GetMapping("/correo/{email}")
+	public Comprador getCompradorEmail(@PathVariable String email) {
+		return compradorService.findByEmail(email);
+	}
+
 }

@@ -53,4 +53,9 @@ public class CompradorServiceImpl implements CompradorService {
 		facturaDao.deleteById(id);		
 	}
 
+	@Override
+	public Comprador findByEmail(String email) {
+		return compradorDao.findByEmail(email);
+	}
+
 }

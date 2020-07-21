@@ -35,4 +35,9 @@ public class VendedorServiceImpl implements VendedorService{
 		return vendedorDao.findByEmail(email);
 	}
 
+	@Override
+	public List<Vendedor> findByWords(String nombre) {
+		return vendedorDao.findByNombreContainingIgnoreCase(nombre);
+	}
+
 }

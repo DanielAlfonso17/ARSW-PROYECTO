@@ -50,6 +50,11 @@ public class VendedorRestController {
 	private VendedorService vendedorService;
 	
 	
+	@GetMapping("/vendedor")
+	public List<Vendedor> getAll(){
+		return vendedorService.findAll();
+	}
+	
 	@PostMapping("/productos/{id}")
 	public ResponseEntity<?> create(@Valid @RequestBody Producto producto, BindingResult result,@PathVariable Long id) {
 		Producto productoCreado = null;
@@ -210,5 +215,10 @@ public class VendedorRestController {
 	@GetMapping("/correo/{email}")
 	public Vendedor getVendedorEmail(@PathVariable String email) {
 		return vendedorService.findByEmail(email);
+	}
+	
+	@GetMapping("/{vendedor}")
+	public List<Vendedor> getVendedorNombre(@PathVariable String vendedor) {
+		return vendedorService.findByWords(vendedor);
 	}
 }

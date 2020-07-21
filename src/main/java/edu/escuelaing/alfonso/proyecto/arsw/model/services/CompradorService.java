@@ -15,4 +15,6 @@ public interface CompradorService {
 	public Factura saveFactura(Factura factura);
 	
 	public void deleteFacturaById(Long id);
+	
+	public Comprador findByEmail(String email);
 }
