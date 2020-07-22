@@ -15,6 +15,6 @@ public interface VendedorDao extends JpaRepository<Vendedor, Long> {
 	
 	public List<Vendedor> findByNombreContainingIgnoreCase(String term);
 	
-
+	
 
 }

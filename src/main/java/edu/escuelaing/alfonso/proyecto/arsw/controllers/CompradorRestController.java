@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -39,7 +40,7 @@ import edu.escuelaing.alfonso.proyecto.arsw.model.services.UploadFileService;
 import edu.escuelaing.alfonso.proyecto.arsw.model.services.VendedorService;
 
 
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/comprador")
 public class CompradorRestController {
@@ -168,4 +169,8 @@ public class CompradorRestController {
 		return compradorService.findByEmail(email);
 	}
 
+	@GetMapping("/{nombre}")
+	public Comprador getCompradorNombre(@PathVariable String nombre) {
+		return compradorService.findByNombre(nombre);
+	}
 }

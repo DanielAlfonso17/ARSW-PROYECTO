@@ -7,6 +7,6 @@ import edu.escuelaing.alfonso.proyecto.arsw.model.entity.Comprador;
 public interface CompradorDao extends CrudRepository<Comprador,Long> {
 	public Comprador findByEmail(String email);
 	
-	
+	public Comprador findByNombre(String nombre);
 
 }

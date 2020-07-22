@@ -58,4 +58,9 @@ public class CompradorServiceImpl implements CompradorService {
 		return compradorDao.findByEmail(email);
 	}
 
+	@Override
+	public Comprador findByNombre(String nombre) {
+		return compradorDao.findByNombre(nombre);
+	}
+
 }

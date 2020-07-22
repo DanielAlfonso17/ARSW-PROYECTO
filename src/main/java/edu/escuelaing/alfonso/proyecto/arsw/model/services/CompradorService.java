@@ -17,4 +17,6 @@ public interface CompradorService {
 	public void deleteFacturaById(Long id);
 	
 	public Comprador findByEmail(String email);
+	
+	public Comprador findByNombre(String nombre);
 }

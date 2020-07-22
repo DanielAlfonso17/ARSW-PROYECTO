@@ -5,6 +5,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class ChatController {
     @MessageMapping("/chat")
     public void handleState(List<String> mensajes){
     	String producto = mensajes.get(1);
-    	if(mensajes.size() == 3) {    		
+    	if(mensajes.size() == 3 || mensajes.size() == 2) {    		
     		String respuesta =  producto + "." + mensajes.get(0);
     		msgt.convertAndSend("/topic/chat." + producto, respuesta);
     	}else {
@@ -31,7 +32,7 @@ public class ChatController {
             Integer precio = Integer.parseInt(mensajes.get(2));
             String username = mensajes.get(3);
             String respuesta = null;
-            if(mensaje > precio) {
+            if(mensaje > precio) { 
             	
                 respuesta= mensaje.toString() +"-"+ username;
                 System.out.println(respuesta);

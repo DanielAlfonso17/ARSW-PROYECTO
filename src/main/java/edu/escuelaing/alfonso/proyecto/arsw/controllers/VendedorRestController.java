@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -35,7 +36,7 @@ import edu.escuelaing.alfonso.proyecto.arsw.model.services.ProductoService;
 import edu.escuelaing.alfonso.proyecto.arsw.model.services.UploadFileService;
 import edu.escuelaing.alfonso.proyecto.arsw.model.services.VendedorService;
 
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/vendedor")
 public class VendedorRestController {
@@ -220,5 +221,10 @@ public class VendedorRestController {
 	@GetMapping("/{vendedor}")
 	public List<Vendedor> getVendedorNombre(@PathVariable String vendedor) {
 		return vendedorService.findByWords(vendedor);
+	}
+	
+	@GetMapping("/get/{nombre}")
+	public Vendedor getVendedorName(@PathVariable String nombre) {
+		return vendedorService.findByNombre(nombre);
 	}
 }

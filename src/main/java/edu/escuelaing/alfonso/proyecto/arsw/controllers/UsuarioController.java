@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.escuelaing.alfonso.proyecto.arsw.auth.LoginRequest;
@@ -37,7 +38,7 @@ import edu.escuelaing.alfonso.proyecto.arsw.model.entity.Vendedor;
 import edu.escuelaing.alfonso.proyecto.arsw.model.services.UserDetailsImpl;
 
 
-@CrossOrigin
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/auth")
 public class UsuarioController {
@@ -62,6 +63,7 @@ public class UsuarioController {
 	@Autowired
 	JwtUtils jwtUtils;
 
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@PostMapping("/signin")
 	public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -83,6 +85,7 @@ public class UsuarioController {
 												 roles));
 	}
 
+	@CrossOrigin(origins = "*", allowedHeaders = "*")
 	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SingUpRequest signUpRequest) {
 		if (userRepository.existsByUsername(signUpRequest.getUsername())) {
@@ -109,10 +112,10 @@ public class UsuarioController {
 			rolesUser.add(rol);
 			user.setRoles(rolesUser);
 			if(roles.equals("ROLE_COMPRADOR")) {
-				Comprador comprador = new Comprador(user.getNombre(), user.getApellido(), user.getEmail());
+				Comprador comprador = new Comprador(user.getUsername(), user.getApellido(), user.getEmail());
 				compradorDao.save(comprador);
 			}else if(roles.equals("ROLE_VENDEDOR")) {
-				Vendedor vendedor = new Vendedor(user.getNombre(), user.getEmail());
+				Vendedor vendedor = new Vendedor(user.getUsername(), user.getEmail());
 				vendedorDao.save(vendedor);
 			}
 		}
