@@ -6,6 +6,11 @@ Es una nueva plataforma, de facturación electrónica donde usuarios vendedores 
 ### Aplicación desplegada 
 [OfferBuy](https://offerbuy-frontend-arsw.herokuapp.com/login)
 
+### Link del frontend
+[Frontend React](https://github.com/DanielAlfonso17/FrontendProyectoARSW)
+
+### Link trello
+[Trello](https://trello.com/b/wS3iex6J/arsw-offerbuy)
 ### Uso de la Aplicación
 
 Contamos con un formulario de registro en el cual podemos elegir el rol de comprador o vendedor, creamos nuestro usuario.
